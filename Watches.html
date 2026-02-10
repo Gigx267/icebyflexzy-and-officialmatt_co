@@ -10,6 +10,37 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet">
     <style>
+        /* Responsive */
+@media (max-width:1024px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:768px){
+    .grid{grid-template-columns:repeat(2,1fr)}
+    .modal-grid{grid-template-columns:1fr}
+    .hero{padding-top:6rem;background-attachment:scroll}
+    .cart-sidebar{width:100%;right:-100%}
+    .nav-links{gap:.75rem;font-size:.85rem}
+    .controls{flex-direction:column;align-items:stretch;gap:.75rem}
+    .card-img{height:180px}
+    .modal{padding:.75rem;width:95%;max-height:85vh}
+    .modal img{height:280px}
+}
+@media (max-width:480px){
+    .grid{grid-template-columns:1fr}
+    .search{min-width:100%;padding:.6rem}
+    .search input{font-size:16px}
+    .container{padding:0 .75rem}
+    .controls{flex-direction:column;align-items:stretch}
+    .hero{min-height:60vh;padding:5rem .75rem 1.5rem}
+    .hero h1{font-size:clamp(1.5rem,4vw,2.2rem)}
+    .nav-link{font-size:.8rem}
+    .cart-toggle{padding:.6rem;bottom:.75rem;right:.75rem;font-size:.9rem}
+    .modal{padding:.6rem;border-radius:8px}
+    .modal-grid{gap:.5rem}
+    .btn{padding:.5rem .6rem;font-size:.9rem}
+    .card-body{padding:.75rem}
+    .product-title{font-size:.95rem}
+    .watch-specs{gap:.5rem}
+    .watch-specs div{font-size:.75rem;padding:.2rem .4rem}
+}
         /* Base */
         *{box-sizing:border-box;margin:0;padding:0}
         html,body{height:100%}
