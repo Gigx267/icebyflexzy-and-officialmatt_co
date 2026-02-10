@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html data-wf-domain="jewellery-nx.webflow.io" data-wf-page="670f7de6dec5c0c82ae616ea" data-wf-site="670f7de6dec5c0c82ae616e4" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>About Us - Icebyflexy | Nigeria's Finest Jewelry Store </title>
+    <meta content="Discover the story behind Icebyflexy - Nigeria's premier source for curated, exquisite jewelry. Learn about our craftsmanship, heritage, and commitment to timeless elegance." name="description"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+            background: #0a0a0a;
+            color: #f5f5f5;
+            line-height: 1.7;
+        }
+
+        /* Progress Bar - Luxury Gold */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: rgba(212, 175, 55, 0.1);
+            z-index: 9999;
+        }
+
+        .progress-bar-line {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #efece1, #f2f1ec, #f2f1ec);
+            box-shadow: 0 0 15px rgba(239, 238, 234, 0.8);
+            transition: width 0.1s ease;
+        }
+
+        /* Navigation Styles */
+        .transparent-navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1.2rem 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .transparent-navbar.scrolled {
+            padding: 0.8rem 0;
+            background: rgba(10, 10, 10, 0.98);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .navbar-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .site-logo {
+            height: 40px;
+            color: #f7f5f0;
+            font-size: 1.6rem;
+            font-weight: 700;
+            text-decoration: none;
+            letter-spacing: 3px;
+            font-family: 'Cormorant Garamond', serif;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .site-logo:hover {
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.6);
+        }
+
+        .deskop-nav {
+            display: flex;
+            align-items: center;
+            gap: 3.5rem;
+        }
+
+        .nav-list {
+            position: relative;
+        }
+
+        .nav-link {
+            color: #f5f5f5;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            padding: 0.5rem 0;
+            display: inline-block;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .nav-link:hover {
+            color: #f7f5f0;
+        }
+
+        .nav-border {
+            height: 2px;
+            width: 0;
+            background: linear-gradient(90deg, #f7f5f0, #f7f5f0);
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
+            transition: width 0.3s ease;
+            margin-top: 5px;
+        }
+
+        .nav-link:hover + .border-wrapper .nav-border {
+            width: 100%;
+        }
+
+        /* Dropdown */
+        .nav-dropdown-wrapper {
+            position: relative;
+        }
+
+        .nav-toggle {
+            cursor: pointer;
+        }
+
+        .nav-dropdown-icon {
+            font-family: 'Material Icons';
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-dropdown-wrapper:hover .nav-dropdown-icon {
+            transform: rotate(180deg);
+            color: #f7f5f0;
+        }
+
+        .nav-dropdown-contents {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(15, 15, 15, 0.99);
+            backdrop-filter: blur(20px);
+            padding: 2.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            min-width: 600px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+        }
+
+        .nav-dropdown-wrapper:hover .nav-dropdown-contents {
+            opacity: 1;
+            visibility: visible;
+            margin-top: 1.5rem;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .category-grid .w-dyn-item {
+            text-align: center;
+        }
+
+        .mask {
+            display: block;
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            transition: all 0.5s ease;
+        }
+
+        .mask:hover {
+            border-color: rgba(212, 175, 55, 0.5);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.2);
+        }
+
+        .portrait-380px {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .mask:hover .portrait-380px {
+            transform: scale(1.08);
+        }
+
+        .portfolio-full-hover {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .mask:hover .portfolio-full-hover {
+            opacity: 1;
+        }
+
+        ._24px-text-white {
+            color: #f7f5f0;
+            font-size: 1.4rem;
+            font-weight: 700;
+            font-family: 'Cormorant Garamond', serif;
+            letter-spacing: 2px;
+        }
+
+        ._20px-text {
+            margin-top: 0.8rem;
+            font-size: 0.95rem;
+            color: #c9a661;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        /* Mobile Menu */
+        .hamburger-menu {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 6px;
+            z-index: 1001;
+        }
+
+        .hamburger-line {
+            width: 25px;
+            height: 2.5px;
+            background: #f7f5f0;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .nav-menu-wrapper {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 400px;
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(10, 10, 10, 0.99) 0%, rgba(20, 15, 10, 0.99) 100%);
+            padding: 6rem 2rem 2rem;
+            transition: right 0.4s ease;
+            overflow-y: auto;
+            z-index: 1000;
+            border-left: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .nav-menu-wrapper.active {
+            right: 0;
+        }
+
+        ._30px-text-white {
+            color: #f7f5f0;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            letter-spacing: 2px;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .nav-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .nav-menu .nav-link {
+            font-size: 1.1rem;
+        }
+
+        .close-navbar-icon {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            cursor: pointer;
+            color: #f7f5f0;
+            font-family: 'Material Icons';
+            font-size: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .close-navbar-icon:hover {
+            transform: rotate(90deg);
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
+        }
+
+        /* About Hero */
+        .about-hero {
+            min-height: 40vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 0 5rem;
+            position: relative;
+            overflow: hidden;
+            background: 
+                linear-gradient(135deg, rgba(0, 0, 0, 0.85), rgba(20, 15, 10, 0.8)),
+                url('./VFTS.jpg') center/cover no-repeat;
+        }
+
+        .about-hero-content {
+            max-width: 800px;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .about-hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            font-family: 'Cormorant Garamond', serif;
+            letter-spacing: 2px;
+            color: #f7f5f0;
+        }
+
+        .about-hero-subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            opacity: 0.95;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 300;
+            letter-spacing: 1px;
+            max-width: 600px;
+        }
+
+        /* About Content */
+        .about-section {
+            padding: 5rem 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            text-align: center;
+            font-family: 'Cormorant Garamond', serif;
+            color: #f7f5f0;
+            letter-spacing: 2px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, #f7f5f0, #c9a661);
+            border-radius: 2px;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 6rem;
+        }
+
+        .about-image {
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .about-content {
+            padding-right: 2rem;
+        }
+
+        .about-content h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #f7f5f0;
+            font-family: 'Cormorant Garamond', serif;
+            letter-spacing: 1px;
+        }
+
+        .about-content p {
+            margin-bottom: 1.5rem;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.8;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .value-card {
+            background: rgba(20, 15, 10, 0.6);
+            border-radius: 12px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .value-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #f7f5f0, #c9a661);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .value-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(212, 175, 55, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .value-card:hover::before {
+            opacity: 1;
+        }
+
+        .value-icon {
+            font-size: 2.5rem;
+            color: #c9a661;
+            margin-bottom: 1.5rem;
+            font-family: 'Material Icons';
+        }
+
+        .value-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #f7f5f0;
+            font-family: 'Cormorant Garamond', serif;
+            letter-spacing: 1px;
+        }
+
+        .value-description {
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* Team Section */
+        .team-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #0a0a0a 0%, #15100a 100%);
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .team-member {
+            text-align: center;
+        }
+
+        .team-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 1.5rem;
+            border: 3px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .team-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .team-member:hover .team-photo img {
+            transform: scale(1.1);
+        }
+
+        .team-name {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #f7f5f0;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .team-role {
+            color: #c9a661;
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .team-description {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 6rem 0;
+            text-align: center;
+            background: 
+                linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(20, 15, 10, 0.9)),
+                url('https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=1600') center/cover no-repeat fixed;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .cta-content {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #f7f5f0;
+            font-family: 'Cormorant Garamond', serif;
+            letter-spacing: 2px;
+        }
+
+        .cta-description {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            color: #f7f5f0;
+            padding: 1rem 2.8rem;
+            border-radius: 50px;
+            border: 2px solid #f7f5f0;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(2px);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212,175,55,0.3), transparent);
+            transition: left 0.8s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-4px);
+            background: rgba(212, 175, 55, 0.1);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.3);
+            color: #f7f5f0;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 4rem 0 2rem;
+            background: #0a0a0a;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #f7f5f0;
+            font-family: 'Cormorant Garamond', serif;
+            letter-spacing: 1px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.75);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .footer-links a:hover {
+            color: #f7f5f0;
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 991px) {
+            .deskop-nav {
+                display: none;
+            }
+
+            .hamburger-menu {
+                display: flex;
+            }
+
+            .category-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .nav-dropdown-contents {
+                min-width: 90vw;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .about-content {
+                padding-right: 0;
+            }
+
+            .values-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 767px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .site-logo {
+                font-size: 1.4rem;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .about-hero {
+                padding: 6rem 0 3rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-wrapper">
+        
+        <!-- Progress Bar -->
+        <div class="progress-bar">
+            <div class="progress-bar-line" id="progressBar"></div>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="progress-bar">
+            <div class="progress-bar-line" id="progressBar"></div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="transparent-navbar" id="navbar">
+            <nav class="container">
+                <div class="navbar-wrapper">
+                    
+                    <!-- Logo -->
+                    <a href="/" class="site-logo"> <img style="height: 1.1cm; border-radius: 50%;opacity: 70%;" src="logo.png" alt="" srcset=""></a>
+
+                    <!-- Desktop Navigation -->
+                    <div class="deskop-nav">
+                        <div class="nav-list">
+                            <a href="index.html" class="nav-link">Home</a>
+                            <div class="border-wrapper">
+                                <div class="nav-border"></div>
+                            </div>
+                        </div>
+ <div class="deskop-nav">
+                        <div class="nav-list">
+                            <a href="About.html" class="nav-link">About </a>
+                            <div class="border-wrapper">
+                                <div class="nav-border"></div>
+                            </div>
+                        </div>
+                        <div class="nav-dropdown-wrapper">
+                            <div class="nav-toggle">
+                                <a href="shop.html" class="nav-link">
+                                    Collections
+                                    <span class="nav-dropdown-icon"> </span>
+                                </a>
+                                <div class="border-wrapper">
+                                    <div class="nav-border"></div>
+                                </div>
+                            </div>
+                            <div class="nav-dropdown-contents">
+                                <div class="category-grid">
+                                    <div class="w-dyn-item">
+                                        <a href="Rings.html" class="mask">
+                                            <video class="portrait-380px" autoplay muted playsinline loop poster="./rings-poster.jpg" aria-label="Rings">
+                                                <source src="gty.mp4" type="video/mp4" />
+                                                Your browser does not support the video tag.
+                                            </video>
+                                            <div class="portfolio-full-hover">
+                                                <div class="_24px-text-white">Rings</div>
+                                            </div>
+                                        </a>
+                                        <div class="_20px-text">Rings</div>
+                                    </div>
+                                    <div class="w-dyn-item">
+                                        <a href="earrings.html" class="mask">
+                                            <video class="portrait-380px" autoplay muted playsinline loop poster="./earrings-poster.jpg" aria-label="Ear Rings">
+                                                <source src="./v2.mp4" type="video/mp4" />
+                                                Your browser does not support the video tag.
+                                            </video>
+                                            <div class="portfolio-full-hover">
+                                                <div class="_24px-text-white">Ear Rings</div>
+                                            </div>
+                                        </a>
+                                        <div class="_20px-text">Ear Rings</div>
+                                    </div>
+                                    <div class="w-dyn-item">
+                                        <a href="necklace.html" class="mask">
+                                            <video class="portrait-380px" autoplay muted playsinline loop poster="./necklace-poster.jpg" aria-label="Necklace">
+                                                <source src=" https://gigx267.github.io/Icebyflexy2025-/j%20(2).mp4" type="video/mp4" />
+                                                Your browser does not support the video tag.
+                                            </video>
+                                            <div class="portfolio-full-hover">
+                                                <div class="_24px-text-white">Necklace</div>
+                                            </div>
+                                        </a>
+                                        <div class="_20px-text">Necklace</div>
+                                    </div>
+                                    <div class="w-dyn-item">
+                                        <a href="Watches.html" class="mask">
+                                            <video class="portrait-380px" autoplay muted playsinline loop poster="./bracelets-poster.jpg" aria-label="Bracelets">
+                                                <source src="./fup.mp4" type="video/mp4" />
+                                                Your browser does not support the video tag.
+                                            </video>
+                                            <div class="portfolio-full-hover">
+                                                <div class="_24px-text-white">Bracelets</div>
+                                            </div>
+                                        </a>
+                                        <div class="_20px-text">Watches</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="nav-list">
+                            <a href="contact.html" class="nav-link">Contact Us</a>
+                            <div class="border-wrapper">
+                                <div class="nav-border"></div>
+                            </div>
+                        </div>
+                    <!-- Mobile Menu Toggle -->
+                    <div class="hamburger-menu" id="hamburger">
+                        <div class="hamburger-line"></div>
+                        <div class="hamburger-line"></div>
+                        <div class="hamburger-line"></div>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Mobile Menu -->
+            <nav class="nav-menu-wrapper" id="mobileMenu">
+                <div class="close-navbar-icon" id="closeMenu">close</div>
+                <div class="_30px-text-white">Browse Pages</div>
+                <div class="nav-menu">
+                    <div class="nav-list">
+                        <a href="index.html" class="nav-link white">Home</a>
+                    </div>
+                    <div class="nav-list">
+                        <a href="About.html" class="nav-link white">About</a>
+                    </div>
+                   
+                    <div class="nav-list">
+                        <a href="shop.html" class="nav-link white">Shop</a>
+                    </div>
+                    <div class="nav-list">
+                        <a href="About.html" class="nav-link white">FAQ</a>
+                    </div>
+                    <div class="nav-list">
+                        <a href="contact.html" class="nav-link white">Contact Us</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <!-- About Hero Section -->
+        <section class="about-hero">
+            <div class="container">
+                <div class="about-hero-content">
+                    <h1 class="about-hero-title">Our Story of Craftsmanship & Elegance</h1>
+                    <p class="about-hero-subtitle">  Every piece of jewelry tells a story, and
+                         we strive to curate a collection that embodies both timeless classics and contemporary
+                         designs, ensuring that you find the perfect expression of your individuality </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Content Section -->
+        <section class="about-section">
+            <div class="container">
+                <h2 class="section-title">About Us </h2>
+                
+                <div class="about-grid">
+                    <div class="about-image">
+                        <video width="100%" height="500" autoplay muted playsinline style="object-fit: cover; border-radius: 12px;">
+                            <source src="https://gigx267.github.io/Icebyflexy2025-/j%20(2).mp4 " type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    
+                    <div class="about-content">
+                        <h3>Redefining  Luxury Jewelry</h3>
+                    <p> Our journey began with a simple vision:
+                         to create pieces that resonate with the modern styles while honoring our rich  heritage.</p>
+                        <p> Icebyflexy creation is more than just an accessory—it's a statement of identity, a celebration of personal style, and an embodiment of artistry. We source only the finest materials, from ethically-mined precious stones to premium metals, ensuring every piece meets our exacting standards.</p>
+                        <p>Our designers draw inspiration from Nigeria's diverse cultural tapestry, contemporary global trends, and the timeless principles of beauty and proportion. The result is a collection that feels both distinctly African and universally elegant.</p>
+                    </div>
+                </div>
+
+                <!-- Our Values -->
+                <h2 class="section-title" style="margin-top: 6rem;">Our Core Values</h2>
+                
+                <div class="values-grid">
+                    <div class="value-card">
+                        <div class="value-icon">diamond</div>
+                        <h3 class="value-title">Excellence in Craftsmanship</h3>
+                        <p class="value-description">Every piece undergoes meticulous attention to detail, from initial design to final polish. Our artisans combine traditional techniques with modern technology.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <div class="value-icon">handshake</div>
+                        <h3 class="value-title">Ethical Sourcing</h3>
+                        <p class="value-description">We are committed to responsible sourcing of all materials, ensuring fair treatment of workers and minimal environmental impact throughout our supply chain.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <div class="value-icon">star</div>
+                        <h3 class="value-title">Timeless Design</h3>
+                        <p class="value-description">We create jewelry that transcends trends—pieces that will be cherished today and passed down as heirlooms for generations to come.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+       
+
+       
+    </div>
+
+    <script>
+        // Scroll Progress Bar
+        window.addEventListener('scroll', () => {
+            const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (window.scrollY / windowHeight) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const closeMenu = document.getElementById('closeMenu');
+
+        hamburger.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+        });
+
+        closeMenu.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
+
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-menu .nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });   
+    </script>
+</body>
+</html>
