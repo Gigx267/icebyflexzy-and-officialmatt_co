@@ -1,0 +1,310 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Development Invoice</title>
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+    <div class="invoice-container">
+        <header>
+            <div class="logo">
+                <h1>Goddafi Software</h1>
+            </div>
+            <div class="invoice-details">
+                <h2>INVOICE</h2>
+                <p><strong>Invoice #:</strong> INV-2025-001</p>
+                <p><strong>Date:</strong> December 2, 2025</p>
+                <p><strong>Due Date:</strong> December 12, 2025</p>
+            </div>
+        </header>
+
+        <section class="addresses">
+            <div class="from-address">
+                <h3>Billed From:</h3>
+                <p>Goddafi Software</p>
+                <p>Third Floor A414 Shariff Plaza Wuse 2, Abuja, FCT </p>
+                <p>Info@goddafisoftwares.com </p>
+                <p>Phone: 08061705555</p>
+            </div>
+            <div class="to-address">
+                <h3>Billed To:</h3>
+                <p><strong>Aradel CMS LIMITED</strong></p> 
+                <p>15 BAbatunde Jose Road, Victoria Island Lagos</p>
+            </div>
+        </section>
+
+        <section class="invoice-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th class="center">Rate</th>
+                        <th class="center">Units</th>
+                        <th class="right">Amount (NGN)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Website Design (UI/UX Mockups & Prototyping)</td>
+                        <td class="center">N/A</td>
+                        <td class="center">1</td>
+                        <td class="right">150,000.00</td>
+                    </tr>
+                    <tr>
+                        <td>Frontend Development (HTML/CSS/JS Implementation)</td>
+                        <td class="center">N/A</td>
+                        <td class="center">1</td>
+                        <td class="right">220,000.00</td>
+                    </tr>
+                    <tr>
+                        <td>Backend Development (CMS Integration & Logic)</td>
+                        <td class="center">N/A</td>
+                        <td class="center">1</td>
+                        <td class="right">260,000.00</td>
+                    </tr>
+                    <tr>
+                        <td>Hosting Setup (1 Month Advance)</td>
+                        <td class="center">50,000.00</td>
+                        <td class="center">1</td>
+                        <td class="right">50,000.00</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3" class="subtotal-label">Subtotal</td>
+                        <td class="subtotal-amount right">680,000.00</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="tax-label">Tax (0%)</td>
+                        <td class="tax-amount right">0.00</td>
+                    </tr>
+                    <tr class="grand-total">
+                        <td colspan="3" class="total-label">Grand Total Due</td>
+                        <td class="total-amount right">680,000.00</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </section>
+
+        <section class="summary">
+            <div class="notes">
+                <h3>Payment Instructions:</h3>
+                <p>Please make the payment of **NGN 680,000.00** to the following account:</p>
+                <p><strong>Bank:</strong> UBA</p>
+                <p><strong>Account Name:</strong> Joy Tochukwu Uzoma</p>
+                <p><strong>Account Number:</strong> 2289866296</p>
+                <br>
+                <p>Thank you for your business! We look forward to launching your new site.</p>
+            </div>
+        </section>
+
+        <footer>
+            <p>For payment details or inquiries, please contact 08061705555 or Info@goddafisoftwares.com.</p>
+        </footer>
+    </div>
+</body>
+</html>
+
+<style> 
+    /* Optimized CSS */
+
+/* Basic Reset and Typography */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.invoice-container {
+    width: 90%; /* Increased width for better use of space */
+    max-width: 800px; /* Max width constraint */
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+h1, h2, h3 {
+    color: #333;
+    margin-top: 0;
+}
+
+p {
+    margin: 3px 0;
+    font-size: 14px;
+}
+
+/* --- Header Section --- */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 30px;
+    border-bottom: 3px solid #007bff;
+    padding-bottom: 15px;
+}
+
+header .logo h1 {
+    color: #007bff;
+    font-size: 2.2em;
+}
+
+.invoice-details h2 {
+    font-size: 2.5em;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+/* --- Addresses Section --- */
+.addresses {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+.addresses h3 {
+    color: #007bff;
+    font-size: 1.1em;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+.from-address, .to-address {
+    width: 48%;
+    padding: 15px; /* Increased padding */
+    background-color: #f9f9f9;
+    border-radius: 4px;
+}
+
+/* --- Invoice Table --- */
+.invoice-table {
+    margin-bottom: 30px;
+}
+
+.invoice-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.invoice-table th, .invoice-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+}
+
+.invoice-table thead th {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold; /* Made bold for emphasis */
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+.invoice-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Alignment Classes */
+.right {
+    text-align: right;
+}
+.center {
+    text-align: center;
+}
+
+/* Table Footer for Totals */
+.invoice-table tfoot td {
+    border: none;
+    padding: 8px 12px;
+    font-size: 15px;
+}
+
+.subtotal-label, .tax-label {
+    text-align: right;
+    font-weight: normal;
+}
+
+.grand-total td {
+    border-top: 2px solid #333;
+    font-size: 1.2em; /* Larger total font */
+    padding-top: 10px;
+    font-weight: bold;
+    color: #007bff;
+}
+
+.total-label {
+    text-align: right;
+}
+
+/* --- Summary Section --- */
+.summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.notes {
+    width: 100%; /* Takes full width */
+}
+
+.notes h3 {
+    color: #007bff;
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+.notes p {
+    font-style: italic;
+    font-size: 0.9em;
+    line-height: 1.4;
+    font-style: normal; /* Override the italic for the payment details */
+}
+
+/* --- Footer --- */
+footer {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+    font-size: 12px;
+    color: #777;
+}
+
+/* --- Responsiveness: Simple Mobile View --- */
+@media (max-width: 600px) {
+    .invoice-container {
+        width: 95%;
+        margin: 20px auto;
+        padding: 15px;
+    }
+
+    header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .invoice-details {
+        text-align: center;
+        margin-top: 15px;
+    }
+
+    .addresses {
+        flex-direction: column;
+    }
+
+    .from-address, .to-address {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+    
+    .invoice-table th, .invoice-table td {
+        padding: 8px; 
+        font-size: 0.85em;
+    }
+}
+</style>
