@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Development Invoice - Dark Theme</title>
+</head>
+<body>
+    <div class="invoice-container">
+        <header>
+            <div class="logo-area">
+               
+                <h1 class="company-name">Arcade Studios</h1>
+            </div>
+            <div class="invoice-details">
+                <h2>INVOICE</h2>
+                <p><strong>Invoice #:</strong> INV-2025-002</p>
+                <p><strong>Date:</strong> December 2, 2025</p>
+                <p><strong>Due Date:</strong> December 12, 2025</p>
+            </div>
+        </header>
+
+        <section class="addresses">
+            <div class="from-address">
+                <h3>Billed From:</h3>
+                <p><strong>Arcade Studios</strong></p>
+                <p>Abuja, FCT, Nigeria </p>
+               
+                <p>Phone: 09061407613</p>
+            </div>
+            <div class="to-address">
+                <h3>Billed To:</h3>
+                <p><strong>Aradel CMS LIMITED</strong></p> 
+                <p>15 Babatunde Jose Road, Victoria Island Lagos</p>
+            </div>
+        </section>
+
+        <section class="invoice-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th class="center">Rate</th>
+                        <th class="center">Units</th>
+                        <th class="right">Amount (NGN)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Website Design (UI/UX Mockups & Prototyping)</td>
+                        <td class="center">N/A</td>
+                        <td class="center">1</td>
+                        <td class="right">100,000.00</td>
+                    </tr>
+                    <tr>
+                        <td>Frontend Development (HTML/CSS/JS Implementation)</td>
+                        <td class="center">N/A</td>
+                        <td class="center">1</td>
+                        <td class="right">150,000.00</td>
+                    </tr>
+                    <tr>
+                        <td>Backend & CMS Implementation (Fixed Price)</td>
+                        <td class="center">N/A</td>
+                        <td class="center">1</td>
+                        <td class="right">150,000.00</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3" class="subtotal-label">Subtotal</td>
+                        <td class="subtotal-amount right">400,000.00</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="tax-label">Tax (0%)</td>
+                        <td class="tax-amount right">0.00</td>
+                    </tr>
+                    <tr class="grand-total">
+                        <td colspan="3" class="total-label">Grand Total Due</td>
+                        <td class="total-amount right">400,000.00</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </section>
+
+        <section class="summary">
+            <div class="notes">
+                <h3>Payment Instructions:</h3>
+                <p>Please make the payment of **NGN 400,000.00** to the following account:</p>
+                <p><strong>Bank:</strong> Moniepoint MFB</p>
+                <p><strong>Account Name:</strong> Kelechi Nwachukwu</p>
+                <p><strong>Account Number:</strong> 9061407613</p>
+                <br>
+                <p class="thank-you-note">Thank you for your business! We look forward to launching your new site.</p>
+            </div>
+        </section>
+
+        
+    </div>
+</body>
+</html>
+
+<style> 
+    /* DARK THEME CSS */
+
+    /* Color Palette */
+    :root {
+        --dark-bg: #1e1e1e;
+        --container-bg: #2d2d2d;
+        --text-light: #f0f0f0;
+        --text-medium: #b0b0b0;
+        --accent-cyan: #00ffff; /* Neon cyan/blue for highlights */
+        --table-header: #3a3a3a;
+        --table-row-odd: #333333;
+        --table-row-even: #2f2f2f;
+        --address-bg: #333333;
+    }
+
+    /* Basic Reset and Typography */
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: var(--dark-bg);
+        color: var(--text-light);
+    }
+
+    .invoice-container {
+        width: 90%;
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 30px;
+        background-color: var(--container-bg);
+        box-shadow: 0 0 30px rgba(0, 255, 255, 0.15); /* Subtle neon glow effect */
+        border-radius: 8px;
+    }
+
+    h1, h2, h3 {
+        color: var(--text-light);
+        margin-top: 0;
+    }
+
+    p {
+        margin: 3px 0;
+        font-size: 14px;
+        color: var(--text-medium);
+    }
+    strong {
+        color: var(--text-light);
+    }
+    
+    /* --- Header Section --- */
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 30px;
+        border-bottom: 3px solid var(--accent-cyan);
+        padding-bottom: 15px;
+    }
+
+    .logo-area {
+        display: flex;
+        align-items: center;
+    }
+
+    /* Logo Placeholder Style */
+    .logo-placeholder {
+        width: 50px;
+        height: 50px;
+        background-color: var(--accent-cyan);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: var(--dark-bg);
+        font-size: 2em;
+        font-weight: bold;
+        margin-right: 15px;
+        /* If using an image: remove background/text styles and use an <img> tag inside */
+    }
+
+    .company-name {
+        color: var(--accent-cyan);
+        font-size: 2.2em;
+    }
+
+    .invoice-details {
+        text-align: right;
+    }
+    .invoice-details h2 {
+        font-size: 2.5em;
+        color: var(--accent-cyan);
+        margin-bottom: 10px;
+    }
+
+    /* --- Addresses Section --- */
+    .addresses {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 40px;
+    }
+
+    .addresses h3 {
+        color: var(--accent-cyan);
+        font-size: 1.1em;
+        border-bottom: 1px solid var(--table-row-odd);
+        padding-bottom: 5px;
+        margin-bottom: 10px;
+    }
+
+    .from-address, .to-address {
+        width: 48%;
+        padding: 15px;
+        background-color: var(--address-bg);
+        border-radius: 4px;
+    }
+
+    /* --- Invoice Table --- */
+    .invoice-table {
+        margin-bottom: 30px;
+    }
+
+    .invoice-table table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .invoice-table th, .invoice-table td {
+        border: 1px solid var(--table-row-odd);
+        padding: 12px;
+    }
+
+    .invoice-table thead th {
+        background-color: var(--table-header);
+        color: var(--accent-cyan);
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 14px;
+    }
+
+    .invoice-table tbody tr {
+        background-color: var(--table-row-even);
+    }
+    .invoice-table tbody tr:nth-child(even) {
+        background-color: var(--table-row-odd);
+    }
+    
+    /* Alignment Classes */
+    .right {
+        text-align: right;
+    }
+    .center {
+        text-align: center;
+    }
+
+    /* Table Footer for Totals */
+    .invoice-table tfoot td {
+        border: none;
+        padding: 8px 12px;
+        font-size: 15px;
+        background-color: var(--container-bg) !important; /* Ensure footer background is clean */
+    }
+
+    .grand-total td {
+        border-top: 2px solid var(--accent-cyan);
+        font-size: 1.2em;
+        padding-top: 10px;
+        font-weight: bold;
+        color: var(--accent-cyan);
+    }
+
+    /* --- Summary Section --- */
+    .summary {
+        margin-top: 20px;
+    }
+    .notes h3 {
+        color: var(--accent-cyan);
+        font-size: 1.1em;
+        margin-bottom: 10px;
+    }
+
+    .thank-you-note {
+        font-style: italic;
+        color: var(--text-medium);
+        margin-top: 15px;
+    }
+
+    /* --- Footer --- */
+    footer {
+        text-align: center;
+        margin-top: 40px;
+        padding-top: 15px;
+        border-top: 1px solid var(--table-row-odd);
+        font-size: 12px;
+        color: var(--text-medium);
+    }
+
+    /* --- Responsiveness: Mobile View --- */
+    @media (max-width: 600px) {
+        .invoice-container {
+            padding: 15px;
+        }
+        header {
+            flex-direction: column;
+            align-items: center;
+        }
+        .logo-area {
+            margin-bottom: 15px;
+        }
+        .invoice-details {
+            text-align: center;
+        }
+        .addresses {
+            flex-direction: column;
+        }
+        .from-address, .to-address {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        .invoice-table th, .invoice-table td {
+            padding: 8px; 
+            font-size: 0.85em;
+        }
+    }
+</style>
