@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Icebyflexy — Bracelet Collection</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="description" content="Premium luxury bracelets collection. Browse our exclusive bracelets for men and women."/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet">
+    <style>
+        /* Base */
+        *{box-sizing:border-box;margin:0;padding:0}
+        html,body{height:100%}
+        body{
+            font-family:'Montserrat',sans-serif;
+            background:#0a0a0a;color:#f5f5f5;
+            -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+            line-height:1.45;
+            overflow-x:hidden;
+        }
+        a{color:inherit;text-decoration:none}
+        .container{max-width:1200px;margin:0 auto;padding:0 1rem}
+
+        /* Top Nav / Progress */
+        .progress-bar{position:fixed;top:0;left:0;width:100%;height:3px;background:rgba(212,175,55,0.08);z-index:1100;will-change:contents}
+        .progress-bar-line{height:100%;width:0;background:linear-gradient(90deg,#efece1,#f2f1ec);box-shadow:0 0 12px rgba(239,238,234,0.6);transition:width .12s linear;will-change:width}
+        .transparent-navbar{position:fixed;top:0;left:0;right:0;padding:1rem 0;z-index:1050;background:transparent;transition:all .25s}
+        .transparent-navbar.scrolled{background:rgba(10,10,10,.96);backdrop-filter:blur(8px);border-bottom:1px solid rgba(212,175,55,.12)}
+        .navbar-wrapper{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+        .site-logo{font-family:'Cormorant Garamond',serif;font-weight:700;letter-spacing:2px;font-size:1.25rem;color:#f7f5f0;display:flex;align-items:center}
+        .site-logo img{height:1cm;border-radius:50%;opacity:90%;width:auto}
+        .nav-links{display:flex;gap:1.25rem;align-items:center}
+        .nav-link{font-weight:600;font-size:.95rem;text-transform:uppercase;color:rgba(247,245,240,.9);transition:color .2s}
+        .nav-link:hover,.nav-link.active{color:#d4af37;text-shadow:0 0 10px rgba(212,175,55,.18)}
+
+        /* Hero */
+        .hero{min-height:82vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:5.5rem 1rem 2rem;background:linear-gradient(135deg,rgba(0,0,0,.6),rgba(20,15,10,.6)),url('./kp\ \(17\).jpeg') center/cover no-repeat}
+        .hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5vw,3rem);letter-spacing:1px;color:#fff}
+        .hero p{color:rgba(247,245,240,.9);margin-top:.6rem}
+
+        /* Store controls */
+        .controls{display:flex;gap:1rem;flex-wrap:wrap;align-items:center;margin:2rem 0}
+        .search{flex:1;min-width:180px;display:flex;gap:.5rem;align-items:center;background:rgba(255,255,255,.03);padding:.5rem;border-radius:8px;border:1px solid rgba(255,255,255,.03);transition:all .2s}
+        .search:focus-within{border-color:rgba(212,175,55,.3);background:rgba(212,175,55,.05)}
+        .search input{background:transparent;border:0;outline:none;color:inherit;padding:.5rem;font-size:1rem;width:100%}
+        .select{background:rgba(255,255,255,.03);padding:.45rem;border-radius:8px;border:1px solid rgba(255,255,255,.03);color:inherit;cursor:pointer;transition:all .2s}
+        .select:hover,.select:focus{border-color:rgba(212,175,55,.3);background:rgba(212,175,55,.05)}
+        .badge{background:#d4af37;color:#0a0a0a;padding:.35rem .6rem;border-radius:999px;font-weight:700;font-size:.85rem}
+
+        /* Products grid */
+        .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2.5rem}
+        .card{background:linear-gradient(180deg,rgba(255,255,255,.02),transparent);border:1px solid rgba(255,255,255,.04);border-radius:12px;overflow:hidden;padding:0;display:flex;flex-direction:column;transition:transform .18s,box-shadow .18s;cursor:pointer}
+        .card:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,0,0,.6)}
+        .card-img{width:100%;height:240px;object-fit:cover;display:block;background:#1a1a1a}
+        .card-body{padding:1rem;display:flex;flex-direction:column;gap:.5rem;flex:1}
+        .product-title{font-weight:700;color:#f7f5f0}
+        .product-meta{color:rgba(247,245,240,.76);font-size:.95rem;text-transform:capitalize}
+        .price-row{display:flex;justify-content:space-between;align-items:center;margin-top:auto}
+        .price{font-weight:700;color:#d4af37}
+        .btn{background:transparent;border:1px solid #d4af37;color:#f7f5f0;padding:.55rem .7rem;border-radius:8px;cursor:pointer;font-weight:600;transition:all .2s}
+        .btn:hover{background:rgba(212,175,55,.1)}
+        .btn.ghost{background:transparent}
+        .btn.primary{background:#d4af37;color:#0a0a0a;border-color:transparent}
+        .btn.primary:hover{background:#e5c158}
+
+        /* Empty */
+        .empty{padding:2rem;text-align:center;color:rgba(255,255,255,.7)}
+
+        /* Cart sidebar */
+        .cart-toggle{position:fixed;right:1rem;bottom:1rem;background:#d4af37;color:#0a0a0a;padding:.8rem;border-radius:999px;z-index:1200;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.6);display:flex;gap:.6rem;align-items:center;font-weight:700;transition:all .2s;border:none}
+        .cart-toggle:hover{transform:scale(1.05);box-shadow:0 15px 40px rgba(0,0,0,.8)}
+        .cart-sidebar{position:fixed;top:0;right:-420px;width:380px;height:100vh;background:linear-gradient(180deg,#0b0b0b,#131313);border-left:1px solid rgba(212,175,55,.08);padding:1rem;transition:right .32s;z-index:1190;display:flex;flex-direction:column;gap:1rem}
+        .cart-sidebar.open{right:0}
+        .cart-head{display:flex;justify-content:space-between;align-items:center}
+        .cart-items{overflow-y:auto;overflow-x:hidden;flex:1;padding-right:.25rem;scrollbar-width:thin;scrollbar-color:rgba(212,175,55,.3) transparent}
+        .cart-items::-webkit-scrollbar{width:6px}
+        .cart-items::-webkit-scrollbar-track{background:transparent}
+        .cart-items::-webkit-scrollbar-thumb{background:rgba(212,175,55,.3);border-radius:3px}
+        .cart-item{display:flex;gap:.6rem;padding:.6rem;border-radius:8px;border:1px solid rgba(255,255,255,.03);margin-bottom:.6rem}
+        .cart-item img{width:64px;height:64px;object-fit:cover;border-radius:6px;background:#1a1a1a}
+        .cart-item-info{flex:1}
+        .cart-footer{border-top:1px solid rgba(255,255,255,.03);padding-top:.75rem;display:flex;flex-direction:column;gap:.6rem}
+
+        /* Bracelet-specific styles */
+        .bracelet-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .bracelet-feature .material-icons {
+            font-size: 1rem;
+            color: #d4af37;
+        }
+        .bracelet-specs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 0.5rem;
+        }
+        .bracelet-specs div {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+
+        /* Modal */
+        .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:1250;backdrop-filter:blur(4px);animation:fadeIn .2s}
+        .modal-backdrop.show{display:flex}
+        @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+        .modal{background:#0b0b0b;border-radius:12px;padding:1rem;width:min(880px,95%);max-height:90vh;overflow:auto;border:1px solid rgba(212,175,55,.06);animation:slideUp .3s}
+        @keyframes slideUp{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
+        .modal-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+        .modal img{width:100%;height:360px;object-fit:cover;border-radius:8px;background:#1a1a1a}
+
+        /* Responsive */
+        @media (max-width:1024px){.grid{grid-template-columns:repeat(3,1fr)}}
+        @media (max-width:768px){
+            .grid{grid-template-columns:repeat(2,1fr)}
+            .modal-grid{grid-template-columns:1fr}
+            .hero{padding-top:6rem;background-attachment:scroll}
+            .cart-sidebar{width:100%;right:-100%}
+        }
+        @media (max-width:480px){
+            .grid{grid-template-columns:1fr}
+            .search{min-width:120px}
+            .container{padding:0 .75rem}
+            .controls{flex-direction:column;align-items:stretch}
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar"><div class="progress-bar-line" id="progressBar"></div></div>
+
+    <header class="transparent-navbar" id="navbar">
+        <div class="container">
+            <div class="navbar-wrapper">
+                <a class="site-logo" href="index.html"><img src="logo.png" alt="Icebyflexy Logo"></a>
+                <nav class="nav-links">
+                    <a class="nav-link" href="index.html">Home</a>
+                    <a class="nav-link" href="About.html">About</a>
+                    <a class="nav-link" href="shop.html">Collections</a>
+                    <a class="nav-link active" href="bracelets.html">Bracelets</a>
+                    <a class="nav-link" href="contact.html">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main style="padding-top:5.6rem">
+       
+
+        <section class="container" aria-label="shop">
+            <div class="controls">
+                <div class="search" role="search">
+                    <span class="material-icons" style="opacity:.8">search</span>
+                    <input id="searchInput" placeholder="Search bracelets, e.g., 'Gold', 'Diamond'" aria-label="Search bracelets"/>
+                </div>
+
+                <select id="categorySelect" class="select" aria-label="Filter by category">
+                    <option value="all">All categories</option>
+                    <option value="tennis">Tennis Bracelets</option>
+                    <option value="chain">Chain Bracelets</option>
+                    <option value="cuff">Cuff Bracelets</option>
+                    <option value="charm">Charm Bracelets</option>
+                    <option value="bangle">Bangles</option>
+                    <option value="diamond">Diamond Bracelets</option>
+                    <option value="gold">Gold Bracelets</option>
+                    <option value="silver">Silver Bracelets</option>
+                    <option value="limited">Limited Edition</option>
+                </select>
+
+                <select id="sortSelect" class="select" aria-label="Sort bracelets">
+                    <option value="featured">Featured</option>
+                    <option value="price-asc">Price — low to high</option>
+                    <option value="price-desc">Price — high to low</option>
+                    <option value="newest">Newest</option>
+                </select>
+
+                <div class="badge" id="resultsCount">0</div>
+            </div>
+
+            <div id="productsGrid" class="grid" aria-live="polite" aria-label="Bracelets grid"></div>
+
+            <div id="emptyState" class="empty" style="display:none" role="status">No bracelets found. Try a different search or filter.</div>
+        </section>
+    </main>
+
+    <button id="cartToggle" class="cart-toggle" aria-haspopup="dialog" aria-label="Open shopping cart">
+        <span class="material-icons-outlined">shopping_cart</span>
+        <span id="cartCount">0</span>
+    </button>
+
+    <aside id="cartSidebar" class="cart-sidebar" aria-hidden="true" aria-label="Shopping cart">
+        <div class="cart-head">
+            <div style="font-weight:700">Your Cart</div>
+            <button id="closeCart" class="btn ghost" aria-label="Close cart">close</button>
+        </div>
+        <div class="cart-items" id="cartItems"></div>
+        <div class="cart-footer">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+                <div class="muted">Subtotal</div>
+                <div id="cartSubtotal" style="font-weight:700;color:#d4af37">$0.00</div>
+            </div>
+            <div style="display:flex;gap:.5rem">
+                <button id="checkoutBtn" class="btn primary" style="flex:1">Checkout</button>
+                <button id="clearCartBtn" class="btn" style="flex:1">Clear</button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Modal -->
+    <div id="modalBackdrop" class="modal-backdrop" role="dialog" aria-modal="true" aria-label="Bracelet details">
+        <div class="modal" role="document">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.6rem">
+                <div style="font-weight:700" id="modalTitle">Bracelet</div>
+                <button id="closeModal" class="btn ghost" aria-label="Close modal">close</button>
+            </div>
+            <div class="modal-grid">
+                <div>
+                    <img id="modalImage" src="" alt="bracelet image"/>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:.6rem">
+                    <div id="modalPrice" style="font-weight:800;color:#d4af37;font-size:1.25rem"></div>
+                    <div id="modalDescription" class="muted"></div>
+                    <div class="bracelet-specs" id="modalSpecs"></div>
+                    <div style="margin-top:auto;display:flex;gap:.5rem">
+                        <input id="modalQty" type="number" min="1" value="1" aria-label="Quantity" style="width:80px;padding:.5rem;border-radius:8px;border:1px solid rgba(255,255,255,.04);background:transparent;color:inherit">
+                        <button id="modalAddBtn" class="btn primary">Add to cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const products = [
+            { 
+                id: 'b001', 
+                title:'Eternity Diamond Tennis', 
+                price:1850, 
+                category:'tennis', 
+                img:'kp (21).jpeg', 
+                desc:'Classic tennis bracelet with full eternity diamond setting. 14K white gold with secure clasp.',
+                specs: ['Full Eternity', '14K White Gold', '7" Length', 'Secure Box Clasp']
+            },
+            { 
+                id: 'b002', 
+                title:'Italian Figaro Chain', 
+                price:450, 
+                category:'chain', 
+                img:'kp (22).jpeg', 
+                desc:'Italian Figaro chain bracelet in 14K yellow gold. Timeless design with lobster clasp.',
+                specs: ['Figaro Chain', '14K Yellow Gold', 'Lobster Clasp', 'Adjustable']
+            },
+            { 
+                id: 'b003', 
+                title:'Celestial Cuff', 
+                price:920, 
+                category:'cuff', 
+                img:'kp (23).jpeg', 
+                desc:'Open cuff bracelet with celestial motifs and diamond accents. Adjustable fit for any wrist.',
+                specs: ['Open Cuff', 'Celestial Design', 'Diamond Accents', 'Adjustable']
+            },
+            { 
+                id: 'b004', 
+                title:'Charm Collector', 
+                price:680, 
+                category:'charm', 
+                img:'kp (24).jpeg', 
+                desc:'Personal charm bracelet with interchangeable charms. Sterling silver with secure toggle.',
+                specs: ['Sterling Silver', 'Interchangeable', '5 Charms Included', 'Toggle Clasp']
+            },
+          
+        
+        ];
+
+        let cart = JSON.parse(localStorage.getItem('iceby_cart_bracelets') || '{}');
+
+        // Elements
+        const productsGrid = document.getElementById('productsGrid');
+        const resultsCount = document.getElementById('resultsCount');
+        const emptyState = document.getElementById('emptyState');
+        const searchInput = document.getElementById('searchInput');
+        const categorySelect = document.getElementById('categorySelect');
+        const sortSelect = document.getElementById('sortSelect');
+        const cartToggle = document.getElementById('cartToggle');
+        const cartSidebar = document.getElementById('cartSidebar');
+        const cartItemsEl = document.getElementById('cartItems');
+        const cartCount = document.getElementById('cartCount');
+        const cartSubtotal = document.getElementById('cartSubtotal');
+        const closeCart = document.getElementById('closeCart');
+        const clearCartBtn = document.getElementById('clearCartBtn');
+        const checkoutBtn = document.getElementById('checkoutBtn');
+
+        const modalBackdrop = document.getElementById('modalBackdrop');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalImage = document.getElementById('modalImage');
+        const modalPrice = document.getElementById('modalPrice');
+        const modalDescription = document.getElementById('modalDescription');
+        const modalSpecs = document.getElementById('modalSpecs');
+        const modalQty = document.getElementById('modalQty');
+        const modalAddBtn = document.getElementById('modalAddBtn');
+        const closeModal = document.getElementById('closeModal');
+
+        function formatPrice(n){ return '$' + n.toFixed(2); }
+
+        function renderProducts(){
+            const q = (searchInput.value || '').trim().toLowerCase();
+            const cat = categorySelect.value;
+            const sort = sortSelect.value;
+
+            let list = products.slice();
+
+            if(cat !== 'all') list = list.filter(p => p.category === cat);
+            if(q) list = list.filter(p => (p.title + ' ' + p.desc + ' ' + p.category).toLowerCase().includes(q));
+
+            if(sort === 'price-asc') list.sort((a,b)=>a.price-b.price);
+            else if(sort === 'price-desc') list.sort((a,b)=>b.price-a.price);
+            else if(sort === 'newest') list.reverse();
+
+            productsGrid.innerHTML = '';
+            if(!list.length){
+                emptyState.style.display = 'block';
+            } else {
+                emptyState.style.display = 'none';
+                list.forEach(p=>{
+                    const el = document.createElement('article');
+                    el.className = 'card';
+                    el.innerHTML = `
+                        <img class="card-img" loading="lazy" src="${p.img}" alt="${p.title}">
+                        <div class="card-body">
+                            <div class="product-title">${p.title}</div>
+                            <div class="product-meta">${p.category.charAt(0).toUpperCase() + p.category.slice(1)} Bracelet</div>
+                            <div class="bracelet-specs">
+                                ${p.specs.map(spec => `<div>${spec}</div>`).join('')}
+                            </div>
+                            <div class="price-row">
+                                <div class="price">${formatPrice(p.price)}</div>
+                                <div style="display:flex;gap:.5rem">
+                                    <button class="btn ghost" data-action="view" data-id="${p.id}" aria-label="View ${p.title}">View</button>
+                                    <button class="btn primary" data-action="add" data-id="${p.id}" aria-label="Add ${p.title} to cart">Add</button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    productsGrid.appendChild(el);
+                });
+            }
+            resultsCount.textContent = list.length;
+        }
+
+        function getProduct(id){ return products.find(p=>p.id===id); }
+
+        function saveCart(){ localStorage.setItem('iceby_cart_bracelets', JSON.stringify(cart)); }
+        function addToCart(id, qty=1){
+            if(!cart[id]) cart[id] = 0;
+            cart[id] += qty;
+            saveCart();
+            renderCart();
+        }
+        function removeFromCart(id){
+            delete cart[id];
+            saveCart();
+            renderCart();
+        }
+        function setCartQty(id, qty){
+            if(qty <= 0) removeFromCart(id);
+            else { cart[id] = qty; saveCart(); renderCart(); }
+        }
+        function clearCart(){ cart = {}; saveCart(); renderCart(); }
+
+        function renderCart(){
+            cartItemsEl.innerHTML = '';
+            const ids = Object.keys(cart);
+            let subtotal = 0;
+            if(!ids.length){
+                cartItemsEl.innerHTML = '<div class="muted">Your cart is empty.</div>';
+            } else {
+                ids.forEach(id=>{
+                    const p = getProduct(id);
+                    const qty = cart[id];
+                    if(!p) return;
+                    subtotal += p.price * qty;
+                    const node = document.createElement('div');
+                    node.className = 'cart-item';
+                    node.innerHTML = `
+                        <img src="${p.img}" alt="${p.title}">
+                        <div class="cart-item-info">
+                            <div style="font-weight:700">${p.title}</div>
+                            <div class="muted">${formatPrice(p.price)} &times; ${qty}</div>
+                            <div style="margin-top:.5rem;display:flex;gap:.4rem">
+                                <button class="btn" data-action="dec" data-id="${id}" aria-label="Decrease ${p.title} quantity">-</button>
+                                <button class="btn" data-action="inc" data-id="${id}" aria-label="Increase ${p.title} quantity">+</button>
+                                <button class="btn" data-action="rem" data-id="${id}" aria-label="Remove ${p.title}">Remove</button>
+                            </div>
+                        </div>
+                    `;
+                    cartItemsEl.appendChild(node);
+                });
+            }
+            cartCount.textContent = ids.reduce((s,id)=>s+cart[id],0)||0;
+            cartSubtotal.textContent = formatPrice(subtotal);
+        }
+
+        cartToggle.addEventListener('click', ()=>{ cartSidebar.classList.add('open'); cartSidebar.setAttribute('aria-hidden','false'); });
+        closeCart.addEventListener('click', ()=>{ cartSidebar.classList.remove('open'); cartSidebar.setAttribute('aria-hidden','true'); });
+        clearCartBtn.addEventListener('click', clearCart);
+
+        checkoutBtn.addEventListener('click', ()=>{ 
+            if(Object.keys(cart).length === 0) {
+                alert('Your cart is empty. Add some bracelets first!');
+                return;
+            }
+            const subtotal = Object.keys(cart).reduce((sum, id) => {
+                const p = getProduct(id);
+                return sum + (p ? p.price * cart[id] : 0);
+            }, 0);
+            alert(`Proceeding to checkout. Total: ${formatPrice(subtotal)}\n\nNote: This is a demo store. Payment integration would be implemented here.`);
+        });
+
+        productsGrid.addEventListener('click', (e)=>{
+            const btn = e.target.closest('button');
+            if(!btn) return;
+            const id = btn.dataset.id;
+            const action = btn.dataset.action;
+            if(action === 'add') addToCart(id,1);
+            if(action === 'view') openModal(id);
+        });
+
+        cartItemsEl.addEventListener('click', (e)=>{
+            const btn = e.target.closest('button');
+            if(!btn) return;
+            const id = btn.dataset.id;
+            const act = btn.dataset.action;
+            if(act === 'inc') setCartQty(id, (cart[id]||0) + 1);
+            if(act === 'dec') setCartQty(id, (cart[id]||0) - 1);
+            if(act === 'rem') removeFromCart(id);
+        });
+
+        function openModal(id){
+            const p = getProduct(id);
+            if(!p) return;
+            modalTitle.textContent = p.title;
+            modalImage.src = p.img;
+            modalImage.alt = p.title;
+            modalPrice.textContent = formatPrice(p.price);
+            modalDescription.textContent = p.desc;
+            modalSpecs.innerHTML = p.specs.map(spec => `<div>${spec}</div>`).join('');
+            modalQty.value = 1;
+            modalAddBtn.dataset.id = id;
+            modalBackdrop.classList.add('show');
+        }
+        modalBackdrop.addEventListener('click', (e)=>{ if(e.target === modalBackdrop) modalBackdrop.classList.remove('show'); });
+        closeModal.addEventListener('click', ()=>modalBackdrop.classList.remove('show'));
+        modalAddBtn.addEventListener('click', ()=>{
+            const id = modalAddBtn.dataset.id;
+            const qty = Math.max(1, parseInt(modalQty.value||1,10));
+            addToCart(id, qty);
+            modalBackdrop.classList.remove('show');
+        });
+
+        [searchInput, categorySelect, sortSelect].forEach(el=>{
+            el.addEventListener('input', debounce(renderProducts, 200));
+            el.addEventListener('change', renderProducts);
+        });
+
+        function debounce(fn, wait){ let t; return function(){ clearTimeout(t); t = setTimeout(()=>fn.apply(this,arguments), wait); }; }
+
+        window.addEventListener('scroll', ()=> {
+            const doc = document.documentElement;
+            const height = doc.scrollHeight - doc.clientHeight;
+            const pct = height ? (window.scrollY / height) * 100 : 0;
+            document.getElementById('progressBar').style.width = pct + '%';
+            const nav = document.getElementById('navbar');
+            if(window.scrollY > 40) nav.classList.add('scrolled'); else nav.classList.remove('scrolled');
+        }, { passive:true });
+
+        document.addEventListener('keydown', (e)=>{
+            if(e.key === 'Escape'){ modalBackdrop.classList.remove('show'); cartSidebar.classList.remove('open'); }
+        });
+
+        renderProducts();
+        renderCart();
+
+        (function sanitizeCart(){
+            let changed=false;
+            Object.keys(cart).forEach(id=>{ if(!getProduct(id)){ delete cart[id]; changed=true; }});
+            if(changed) saveCart();
+        })();
+    </script>
+</body>
+</html>
