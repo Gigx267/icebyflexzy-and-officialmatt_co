@@ -1,1 +1,328 @@
 
+
+   <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Icebyflexy — Watches Collection</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="description" content="Premium luxury timepieces. Explore our horological collection of automatic and quartz watches."/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet">
+    <style>
+        /* Base (Shared with Rings for Brand Consistency) */
+        *{box-sizing:border-box;margin:0;padding:0}
+        html,body{height:100%}
+        body{
+            font-family:'Montserrat',sans-serif;
+            background:#0a0a0a;color:#f5f5f5;
+            -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+            line-height:1.45;
+            overflow-x:hidden;
+        }
+        a{color:inherit;text-decoration:none}
+        .container{max-width:1200px;margin:0 auto;padding:0 1rem}
+
+        /* Top Nav */
+        .progress-bar{position:fixed;top:0;left:0;width:100%;height:3px;background:rgba(212,175,55,0.08);z-index:1100}
+        .progress-bar-line{height:100%;width:0;background:linear-gradient(90deg,#efece1,#f2f1ec);box-shadow:0 0 12px rgba(239,238,234,0.6);transition:width .12s linear}
+        .transparent-navbar{position:fixed;top:0;left:0;right:0;padding:1rem 0;z-index:1050;background:transparent;transition:all .25s}
+        .transparent-navbar.scrolled{background:rgba(10,10,10,.96);backdrop-filter:blur(8px);border-bottom:1px solid rgba(212,175,55,.12)}
+        .navbar-wrapper{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+        .site-logo{font-family:'Cormorant Garamond',serif;font-weight:700;letter-spacing:2px;font-size:1.25rem;color:#f7f5f0;display:flex;align-items:center}
+        .site-logo img{height:1cm;border-radius:50%;opacity:90%;width:auto}
+        .nav-links{display:flex;gap:1.25rem;align-items:center}
+        .nav-link{font-weight:600;font-size:.95rem;text-transform:uppercase;color:rgba(247,245,240,.9);transition:color .2s}
+        .nav-link:hover,.nav-link.active{color:#d4af37}
+
+        /* Hero (Watch Themed) */
+        .hero{min-height:82vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:5.5rem 1rem 2rem;background:linear-gradient(135deg,rgba(0,0,0,.7),rgba(20,15,10,.7)),url('./watch-hero.jpg') center/cover no-repeat}
+        .hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5vw,3rem);letter-spacing:1px;color:#fff}
+
+        /* Controls */
+        .controls{display:flex;gap:1rem;flex-wrap:wrap;align-items:center;margin:2rem 0}
+        .search{flex:1;min-width:180px;display:flex;gap:.5rem;align-items:center;background:rgba(255,255,255,.03);padding:.5rem;border-radius:8px;border:1px solid rgba(255,255,255,.03)}
+        .search input{background:transparent;border:0;outline:none;color:inherit;padding:.5rem;width:100%}
+        .select{background:rgba(255,255,255,.03);padding:.45rem;border-radius:8px;border:1px solid rgba(255,255,255,.03);color:inherit;cursor:pointer}
+        .badge{background:#d4af37;color:#0a0a0a;padding:.35rem .6rem;border-radius:999px;font-weight:700}
+
+        /* Products Grid */
+        .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2.5rem}
+        .card{background:linear-gradient(180deg,rgba(255,255,255,.02),transparent);border:1px solid rgba(255,255,255,.04);border-radius:12px;overflow:hidden;transition:transform .18s;cursor:pointer}
+        .card:hover{transform:translateY(-6px)}
+        .card-img{width:100%;height:280px;object-fit:cover;background:#1a1a1a}
+        .card-body{padding:1rem;display:flex;flex-direction:column;gap:.5rem}
+        .product-title{font-weight:700;color:#f7f5f0}
+        .watch-specs{display:flex;flex-wrap:wrap;gap:0.5rem;margin:0.5rem 0}
+        .watch-specs div{background:rgba(212,175,55,0.05);color:rgba(247,245,240,0.8);padding:0.2rem 0.5rem;border-radius:4px;font-size:0.75rem;border:1px solid rgba(212,175,55,0.1)}
+        .price{font-weight:700;color:#d4af37}
+        .btn{background:transparent;border:1px solid #d4af37;color:#f7f5f0;padding:.55rem .7rem;border-radius:8px;cursor:pointer;font-weight:600}
+        .btn.primary{background:#d4af37;color:#0a0a0a;border-color:transparent}
+
+        /* Cart Sidebar */
+        .cart-toggle{position:fixed;right:1rem;bottom:1rem;background:#d4af37;color:#0a0a0a;padding:.8rem;border-radius:999px;z-index:1200;cursor:pointer;border:none;display:flex;gap:.6rem;align-items:center;font-weight:700}
+        .cart-sidebar{position:fixed;top:0;right:-420px;width:380px;height:100vh;background:#0b0b0b;border-left:1px solid rgba(212,175,55,.08);padding:1rem;transition:right .32s;z-index:1190;display:flex;flex-direction:column}
+        .cart-sidebar.open{right:0}
+        .cart-items{flex:1;overflow-y:auto;margin:1rem 0}
+        .cart-item{display:flex;gap:.6rem;padding:.6rem;border-bottom:1px solid rgba(255,255,255,.03)}
+        .cart-item img{width:60px;height:60px;object-fit:cover;border-radius:6px}
+
+        /* Modal */
+        .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.8);display:none;align-items:center;justify-content:center;z-index:1250;backdrop-filter:blur(4px)}
+        .modal-backdrop.show{display:flex}
+        .modal{background:#0b0b0b;border-radius:12px;padding:1.5rem;width:min(900px,95%);max-height:90vh;overflow:auto;border:1px solid rgba(212,175,55,.1)}
+        .modal-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+        .modal-img{width:100%;border-radius:8px;aspect-ratio:1/1;object-fit:cover}
+
+        @media (max-width:1024px){.grid{grid-template-columns:repeat(3,1fr)}}
+        @media (max-width:768px){.grid{grid-template-columns:repeat(2,1fr)}.modal-grid{grid-template-columns:1fr}.cart-sidebar{width:100%;right:-100%}}
+        @media (max-width:480px){.grid{grid-template-columns:1fr}}
+    </style>
+</head>
+<body>
+    <div class="progress-bar"><div class="progress-bar-line" id="progressBar"></div></div>
+
+    <header class="transparent-navbar" id="navbar">
+        <div class="container">
+            <div class="navbar-wrapper">
+                <a class="site-logo" href="index.html"><img src="logo.png" alt="Icebyflexy"></a>
+                <nav class="nav-links">
+                    <a class="nav-link" href="index.html">Home</a>
+                    <a class="nav-link" href="About.html">About</a>
+                    <a class="nav-link active" href="watches.html">Watches</a>
+                    <a class="nav-link" href="shop.html">Rings</a>
+                    <a class="nav-link" href="contact.html">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main style="padding-top:5.6rem">
+      
+
+        <section class="container">
+            <div class="controls">
+                <div class="search">
+                    <span class="material-icons">search</span>
+                    <input id="searchInput" placeholder="Search brands, movements, or styles..."/>
+                </div>
+
+                <select id="movementSelect" class="select">
+                    <option value="all">All Movements</option>
+                    <option value="automatic">Automatic</option>
+                    <option value="manual">Manual Wind</option>
+                    <option value="quartz">Quartz</option>
+                </select>
+
+                <select id="sortSelect" class="select">
+                    <option value="newest">Latest Arrivals</option>
+                    <option value="price-asc">Price: Low to High</option>
+                    <option value="price-desc">Price: High to Low</option>
+                </select>
+
+                <div class="badge" id="resultsCount">0</div>
+            </div>
+
+            <div id="productsGrid" class="grid"></div>
+            <div id="emptyState" style="display:none; text-align:center; padding:3rem; opacity:0.6;">No timepieces found matching your criteria.</div>
+        </section>
+    </main>
+
+    <button id="cartToggle" class="cart-toggle">
+        <span class="material-icons-outlined">shopping_bag</span>
+        <span id="cartCount">0</span>
+    </button>
+
+    <aside id="cartSidebar" class="cart-sidebar">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+            <h3>Your Collection</h3>
+            <button id="closeCart" class="btn" style="border:none">Close</button>
+        </div>
+        <div class="cart-items" id="cartItems"></div>
+        <div style="padding-top:1rem; border-top:1px solid rgba(255,255,255,0.1)">
+            <div style="display:flex;justify-content:space-between;margin-bottom:1rem">
+                <span>Total</span>
+                <span id="cartSubtotal" class="price">$0.00</span>
+            </div>
+            <button id="checkoutBtn" class="btn primary" style="width:100%">Secure Checkout</button>
+        </div>
+    </aside>
+
+    <div id="modalBackdrop" class="modal-backdrop">
+        <div class="modal">
+            <div style="display:flex;justify-content:space-between;margin-bottom:1rem">
+                <h2 id="modalTitle">Watch Details</h2>
+                <button id="closeModal" class="btn" style="border:none">Close</button>
+            </div>
+            <div class="modal-grid">
+                <img id="modalImage" class="modal-img" src="" alt="watch">
+                <div>
+                    <div id="modalPrice" class="price" style="font-size:1.5rem;margin-bottom:1rem"></div>
+                    <p id="modalDescription" style="margin-bottom:1.5rem; color:rgba(255,255,255,0.7)"></p>
+                    <div id="modalSpecs" class="watch-specs" style="margin-bottom:2rem"></div>
+                    <button id="modalAddBtn" class="btn primary" style="width:100%">Add to Collection</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const watches = [
+            {
+                    id: 'w001',
+                    title: 'Matt&Co Noir 40mm Black Leather Strap',
+                    price: 500000,
+                    movement: 'automatic',
+                    img: 'wp (4).jpeg',
+                    desc: 'Sophisticated noir timepiece featuring a precision automatic movement and premium black leather strap with 40mm case.',
+                    specs: ['40mm Case', '72hr Power Reserve', 'Sapphire Crystal', 'Black Leather Strap']
+                },
+            {
+            id: 'w002',
+                    title: 'Matt&Co Noir 40mm Blue Leather Strap',
+                    price: 500000,
+                    movement: 'automatic',
+                    img: 'wp (3).jpeg',
+                    desc: 'Sophisticated noir timepiece featuring a precision automatic movement and premium blue leather strap with 40mm case.',
+                    specs: ['40mm Case', '72hr Power Reserve', 'Sapphire Crystal', 'Blue Leather Strap']
+            },
+            {
+            id: 'w003',
+     title: 'Matt&Co Noir 40mm Orange Leather Strap',
+                    price: 500000,
+                    movement: 'automatic',
+                    img: 'wp (2).jpeg',
+                    desc: 'Sophisticated noir timepiece featuring a precision automatic movement and premium orange leather strap with 40mm case.',
+                    specs: ['40mm Case', '72hr Power Reserve', 'Sapphire Crystal', 'Orange Leather Strap']
+            },
+            
+            {
+            id: 'w004',
+            title: 'Matt&Co Noir 40mm White Leather Strap',
+                    price: 500000,
+                    movement: 'automatic',
+                    img: 'wp (1).jpeg',
+                    desc: 'Sophisticated noir timepiece featuring a precision automatic movement and premium white leather strap with 40mm case.',
+                    specs: ['40mm Case', '72hr Power Reserve', 'Sapphire Crystal', 'White Leather Strap']
+            },
+            
+        ];
+
+        let cart = JSON.parse(localStorage.getItem('iceby_cart_watches') || '{}');
+
+        // Logic Functions
+        function formatPrice(n){ return '₦' + n.toLocaleString(); }
+
+        function renderWatches() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const movement = document.getElementById('movementSelect').value;
+            const sort = document.getElementById('sortSelect').value;
+
+            let filtered = watches.filter(w => {
+            const matchesSearch = w.title.toLowerCase().includes(query) || w.desc.toLowerCase().includes(query);
+            const matchesMove = movement === 'all' || w.movement === movement;
+            return matchesSearch && matchesMove;
+            });
+
+            if(sort === 'price-asc') filtered.sort((a,b) => a.price - b.price);
+            if(sort === 'price-desc') filtered.sort((a,b) => b.price - a.price);
+
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = '';
+            
+            filtered.forEach(w => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+                <img class="card-img" src="${w.img}" alt="${w.title}">
+                <div class="card-body">
+                <div class="product-title">${w.title}</div>
+                <div class="watch-specs">
+                    ${w.specs.slice(0,2).map(s => `<div>${s}</div>`).join('')}
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-top:auto">
+                    <span class="price">${formatPrice(w.price)}</span>
+                    <button class="btn primary" onclick="addToCart('${w.id}')">Add</button>
+                </div>
+                </div>
+            `;
+            card.onclick = (e) => { if(e.target.tagName !== 'BUTTON') openModal(w.id); };
+            grid.appendChild(card);
+            });
+            document.getElementById('resultsCount').textContent = filtered.length;
+        }
+
+        function openModal(id) {
+            const w = watches.find(x => x.id === id);
+            document.getElementById('modalTitle').textContent = w.title;
+            document.getElementById('modalImage').src = w.img;
+            document.getElementById('modalPrice').textContent = formatPrice(w.price);
+            document.getElementById('modalDescription').textContent = w.desc;
+            document.getElementById('modalSpecs').innerHTML = w.specs.map(s => `<div>${s}</div>`).join('');
+            document.getElementById('modalAddBtn').onclick = () => { addToCart(w.id); closeModalFunc(); };
+            document.getElementById('modalBackdrop').classList.add('show');
+        }
+
+        function closeModalFunc() { document.getElementById('modalBackdrop').classList.remove('show'); }
+
+        function addToCart(id) {
+            cart[id] = (cart[id] || 0) + 1;
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            localStorage.setItem('iceby_cart_watches', JSON.stringify(cart));
+            const itemsCont = document.getElementById('cartItems');
+            itemsCont.innerHTML = '';
+            let total = 0;
+            let count = 0;
+
+            Object.keys(cart).forEach(id => {
+            const w = watches.find(x => x.id === id);
+            if(!w) return;
+            total += w.price * cart[id];
+            count += cart[id];
+            itemsCont.innerHTML += `
+                <div class="cart-item">
+                <img src="${w.img}">
+                <div style="flex:1">
+                    <div style="font-size:0.9rem;font-weight:600">${w.title}</div>
+                    <div class="price">${formatPrice(w.price)} x ${cart[id]}</div>
+                </div>
+                <button class="btn" style="border:none" onclick="removeFromCart('${id}')">×</button>
+                </div>
+            `;
+            });
+
+            document.getElementById('cartCount').textContent = count;
+            document.getElementById('cartSubtotal').textContent = formatPrice(total);
+        }
+
+        function removeFromCart(id) {
+            delete cart[id];
+            updateCartUI();
+        }
+
+        // Event Listeners
+        document.getElementById('searchInput').oninput = renderWatches;
+        document.getElementById('movementSelect').onchange = renderWatches;
+        document.getElementById('sortSelect').onchange = renderWatches;
+        document.getElementById('cartToggle').onclick = () => document.getElementById('cartSidebar').classList.add('open');
+        document.getElementById('closeCart').onclick = () => document.getElementById('cartSidebar').classList.remove('open');
+        document.getElementById('closeModal').onclick = closeModalFunc;
+
+        window.onscroll = () => {
+            const nav = document.getElementById('navbar');
+            const progress = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+            if(window.scrollY > 50) nav.classList.add('scrolled');
+            else nav.classList.remove('scrolled');
+        };
+
+        renderWatches();
+        updateCartUI();
+        </script>
+</body>
+</html>
